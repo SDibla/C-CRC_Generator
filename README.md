@@ -1,4 +1,4 @@
-# C-CRC_Generator
+# CRC Generator
 
 The code implement a CRC generator from CRC-1 to CRC-8, for any polynomial.
 
