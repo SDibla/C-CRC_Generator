@@ -8,19 +8,21 @@
 #define INIT 0x00               // Initial value
 
 unsigned char crc_generator(char message[], int len) {
-
+    
+    char data[len];
     char DoInvert;
     unsigned char Res = INIT;               // Initialization of the residual
     char last_bit_mask = 1<<(CRC_DIM-1);    // To take always the last bit of the residual seq.
 
     for (int j = 0; j < len; j++){
+        data[j] = message[j];
         for (int i = 0; i < 8; i++) {
 
-            DoInvert = (message[j] & 0x80)>>7 ^ (Res & last_bit_mask)>>(CRC_DIM-1);      // XOR is required?
+            DoInvert = (data[j] & 0x80)>>7 ^ (Res & last_bit_mask)>>(CRC_DIM-1);      // XOR is required?
             Res <<= 1;
             if(DoInvert == 1)               // Do the XOR (related to the polynomial) only in the case in which the actual bit of the message is 1
                 Res ^= PLY;
-            message[j] <<=1;                // Next bit
+            data[j] <<=1;                   // Next bit
 
         }
     }
