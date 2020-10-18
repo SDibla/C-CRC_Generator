@@ -7,7 +7,7 @@
 #define CRC_DIM 5               // Dim of CRC
 #define INIT 0x00               // Initial value
 
-unsigned char crc_generator(char message[], int len) {
+unsigned char crc_generator(const char message[], int len) {
     
     char data[len];
     char DoInvert;
